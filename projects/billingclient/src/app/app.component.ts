@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   hayError: boolean = false;
 
   constructor(
-    private rosterService: GamesService,
+    private gameService: GamesService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -28,16 +28,16 @@ export class AppComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       console.log(params['id']);
 
-      this.rosterService
+      this.gameService
         .getGames(params['id'])
-        .subscribe((roster) => {
-          this.game = roster;
-          console.log(roster);
+        .subscribe((game) => {
+          this.game = game;
+          console.log(game);
         });
     });
   }
 
-  getName(roster: Game) {
-    return roster.week + ' ' + roster.season;
+  getName(game: Game) {
+    return game.week + ' ' + game.season;
   }
 }
